@@ -1,0 +1,15 @@
+{
+    "title"		:	"Elven Display",
+    "type"		:	"entity",
+    "tags"		:	["fun", "build"],
+    "ignore"	:
+    [
+        "addon.txt",
+        ".git*",
+        "README.md",
+        "LICENSE",
+        "description.txt",
+        "publish.ps1",
+        "bin*"
+    ]
+}

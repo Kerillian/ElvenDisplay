@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+    "name"            "Elven Display"
+    "version"         "1.0"
+    "up_date"         "7/10/21"
+    "author_name"     "Kerillian"
+    "author_email"    "N/A"
+    "author_url"      "https://github.com/Kerillian/ElvenDisplay"
+}
