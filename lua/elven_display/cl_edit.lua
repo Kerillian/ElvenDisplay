@@ -15,7 +15,7 @@ end
 local function RandomMenu(item)
 	local Root = vgui.Create("DFrame");
 	Root:SetTitle("Elven Display: Gelbooru Random");
-	Root:SetSize(300, 400);
+	Root:SetSize(350, 400);
 	Root:SetDraggable(true);
 	Root:SetAlpha(0);
 	Root:AlphaTo(255, 0.3, 0);
@@ -85,7 +85,7 @@ end
 local function EditMenu(display)
 	local Root = vgui.Create("DFrame");
 	Root:SetTitle("Elven Display: Editor");
-	Root:SetSize(300, 200);
+	Root:SetSize(350, 190);
 	Root:SetAlpha(0);
 	Root:SetDraggable(true);
 	Root:SetDeleteOnClose(true);
@@ -112,17 +112,24 @@ local function EditMenu(display)
 		surface.DrawRect(0, 0, w, h);
 	end
 
-	local SrcTextbox = vgui.Create("DTextEntry", Root);
-	SrcTextbox:Dock(TOP);
-	SrcTextbox:SetText(display.MediaSrc);
+	local PropertiesView = vgui.Create("DProperties", Root);
+	PropertiesView:Dock(FILL);
+
+	local ScrRow = PropertiesView:CreateRow("Options", "Url");
+	ScrRow:Setup("Generic");
+	ScrRow:SetValue(display.MediaSrc);
+
+	local ScaleRow = PropertiesView:CreateRow("Options", "Scale");
+	ScaleRow:Setup("Float", {min = 0.01, max = 1});
+	ScaleRow:SetValue(display.MediaScale);
 	
-	local ScaleSlider = vgui.Create("DNumSlider", Root);
-	ScaleSlider:Dock(TOP);
-	ScaleSlider:SetText("Media Width");
-	ScaleSlider:SetMin(0.01);
-	ScaleSlider:SetMax(1);
-	ScaleSlider:SetDecimals(3);
-	ScaleSlider:SetValue(display.MediaScale);
+	local InvisibleRow = PropertiesView:CreateRow("Options", "Invisible");
+	InvisibleRow:Setup("Bool");
+	InvisibleRow:SetValue(display.Invisible);
+
+	local PhysicsRow = PropertiesView:CreateRow("Options", "Physics");
+	PhysicsRow:Setup("Bool");
+	PhysicsRow:SetValue(display.Physics);
 
 	local SaveButton = vgui.Create("DButton", Root);
 	SaveButton:SetText("Save Display");
@@ -131,8 +138,10 @@ local function EditMenu(display)
 	function SaveButton:DoClick()
 		net.Start("elven.display.edit");
 			net.WriteEntity(display);
-			net.WriteString(SrcTextbox:GetText());
-			net.WriteFloat(ScaleSlider:GetValue());
+			net.WriteString(ScrRow:GetChild(1):GetChild(0):GetChild(0):GetText());
+			net.WriteFloat(ScaleRow:GetChild(1):GetChild(0):GetChild(0):GetValue());
+			net.WriteBool(InvisibleRow:GetChild(1):GetChild(0):GetChild(0):GetChecked());
+			net.WriteBool(PhysicsRow:GetChild(1):GetChild(0):GetChild(0):GetChecked());
 		net.SendToServer();
 
 		if ElvenDisplay.CloseOnSave:GetBool() then
@@ -146,7 +155,7 @@ local function EditMenu(display)
 		RandomButton:Dock(BOTTOM);
 
 		function RandomButton:DoClick()
-			RandomMenu(SrcTextbox);
+			RandomMenu(ScrRow);
 		end
 	end
 end
@@ -254,7 +263,7 @@ hook.Add("PopulateToolMenu", "CustomMenuSettings", function()
 end)
 
 net.Receive("elven.display.sync", function()
-	net.ReadEntity():UpdateMedia(net.ReadString(), net.ReadFloat());
+	net.ReadEntity():UpdateMedia(net.ReadString(), net.ReadFloat(), net.ReadBool(), net.ReadBool());
 end);
 
 net.Receive("elven.display.edit", function()

@@ -14,6 +14,8 @@ function ENT:Initialize()
 
 	self.MediaSrc = "asset://garrysmod/materials/elven_display/icon.png";
 	self.MediaScale = 0.24;
+	self.Invisible = false;
+	self.Physics = false;
 
 	for k,v in pairs(player.GetHumans()) do
 		if v:GetInfo("cl_elvendisplay_show") == "0" then
@@ -45,6 +47,8 @@ function ENT:Sync(ply)
 		net.WriteEntity(self);
 		net.WriteString(self.MediaSrc);
 		net.WriteFloat(self.MediaScale);
+		net.WriteBool(self.Invisible);
+		net.WriteBool(self.Physics);
 	net.Send(ply);
 end
 
@@ -53,5 +57,7 @@ function ENT:Broadcast()
 		net.WriteEntity(self);
 		net.WriteString(self.MediaSrc);
 		net.WriteFloat(self.MediaScale);
+		net.WriteBool(self.Invisible);
+		net.WriteBool(self.Physics);
 	net.Broadcast();
 end

@@ -86,6 +86,24 @@ net.Receive("elven.display.edit", function(len, ply)
 
 		local url = net.ReadString();
 		local scale = math.Clamp(net.ReadFloat(), 0, 1);
+		local invisible = net.ReadBool();
+		local physics = net.ReadBool();
+
+		ent.MediaScale = scale;
+		ent.Invisible = invisible;
+		ent.Physics = physics;
+
+		if ent.Invisible then
+			ent:DrawShadow(false);
+		else
+			ent:DrawShadow(true);
+		end
+
+		if ent.Physics then
+			ent:SetMoveType(MOVETYPE_VPHYSICS);
+		else
+			ent:SetMoveType(MOVETYPE_FLY);
+		end
 
 		if url ~= ent.MediaSrc then
 			if not VerifyUrl(url, ply) then

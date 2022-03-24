@@ -129,13 +129,15 @@ function ENT:ScaleRenderBounds()
 	self:SetRenderBounds(Vector(0, (-w / 2), 0) * self.MediaScale, Vector(0, w / 2, h) * self.MediaScale);
 end
 
-function ENT:UpdateMedia(url, scale)
+function ENT:UpdateMedia(url, scale, invisible, physics)
 	if not IsValid(self.Panel) then
 		self:SetupPanel();
 	end
 
 	self.MediaSrc = url;
 	self.MediaScale = scale;
+	self.Invisible = invisible;
+	self.Physics = physics;
 
 	if self.LastSrc ~= self.MediaSrc then
 		self.Panel:Call('SetMedia("' .. self.MediaSrc .. '");');
@@ -151,13 +153,14 @@ function ENT:UpdateMedia(url, scale)
 end
 
 function ENT:DrawTranslucent()
-	self:DrawModel();
+	if not self.Invisible then
+		self:DrawModel();
+	end
 
 	if not IsValid(self.Panel) then
 		--[[
-			For unknown reasons, self.Panel will randomly become null for a very small group of people.
+			For unknown reasons, self.Panel will randomly become null.
 			I don't know enough about the problem to claim what's causing it.
-			My head immediately thinks of the garbage collector, but again i have no idea.
 
 			The only lead i have so far: People that have this problem also have high ping.
 			So this is here to fix that problem for people that run into it.
