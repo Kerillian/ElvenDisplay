@@ -118,7 +118,7 @@ function ENT:SetupPanel()
 end
 
 function ENT:ScaleRenderBounds()
-	if not self.Panel then
+	if not IsValid(self.Panel) then
 		self:SetupPanel();
 	end
 
@@ -127,7 +127,7 @@ function ENT:ScaleRenderBounds()
 end
 
 function ENT:UpdateMedia(url, scale)
-	if not self.Panel then
+	if not IsValid(self.Panel) then
 		self:SetupPanel();
 	end
 
@@ -150,7 +150,7 @@ end
 function ENT:DrawTranslucent()
 	self:DrawModel();
 
-	if not self.Panel then
+	if not IsValid(self.Panel) then
 		--[[
 			For unknown reasons, self.Panel will randomly become null for a very small group of people.
 			I don't know enough about the problem to claim what's causing it.
@@ -189,7 +189,7 @@ function ENT:DrawTranslucent()
 end
 
 function ENT:OnRemove()
-	if self.Panel then
+	if IsValid(self.Panel) then
 		self.Panel:Remove();
 	end
 end

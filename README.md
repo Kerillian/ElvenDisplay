@@ -34,7 +34,7 @@ Elven Display is an addon for [Garry's Mod](https://gmod.facepunch.com/) that al
 |------------------------------------|-------|---------|---------------------------------------------------------------------------|
 | sv_elvendisplay_maxsize            | int32 | 1280    | Will limit images to this size in pixels. (Checks both width and height). |
 | sv_elvendisplay_kblimit            | int32 | 10000   | The maximum file size of media in kilobytes.                              |
-| sv_elvendisplay_random             | bool  | 1       | Enable the random button inside the edit UI.                          |
+| sv_elvendisplay_random             | bool  | 1       | Enable the random button inside the edit UI.                              |
 | sv_elvendisplay_adminonly          | bool  | 0       | Makes it so only admins can edit the panels.                              |
 | sv_elvendisplay_filterignoreadmins | bool  | 1       | Admins can bypass link filters. Mime type checks are still enforced.      |
 | sv_elvendisplay_filters            | cmd   | nil     | List the currently used filters.                                          |
