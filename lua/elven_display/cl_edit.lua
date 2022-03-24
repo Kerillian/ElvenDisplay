@@ -232,7 +232,7 @@ local function AdminMenu(displays)
 end
 
 hook.Add("AddToolMenuCategories", "CustomCategory", function()
-	spawnmenu.AddToolCategory("Options", "Elven Display", "#Elven Display")
+	spawnmenu.AddToolCategory("Options", "Elven Display", "#Elven Display");
 end);
 
 hook.Add("PopulateToolMenu", "CustomMenuSettings", function()
@@ -240,6 +240,7 @@ hook.Add("PopulateToolMenu", "CustomMenuSettings", function()
 		panel:ClearControls();
 		panel:CheckBox("Show Displays", "cl_elvendisplay_show");
 		panel:CheckBox("Save On Close", "cl_elvendisplay_closeonsave");
+		panel:Button("Resync Displays", "cl_elvendisplay_sync");
 	end);
 
 	spawnmenu.AddToolMenuOption("Options", "Elven Display", "Elven_Display_Server", "#Server", "", "", function(panel)

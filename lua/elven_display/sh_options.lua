@@ -15,6 +15,12 @@ if CLIENT then
 			net.WriteBool(new == "1");
 		net.SendToServer();
 	end);
+
+	concommand.Add("cl_elvendisplay_sync", function()
+		for k,v in pairs(ents.FindByClass("elven_display")) do
+			v:Sync();
+		end
+	end);
 end
 
 if SERVER then

@@ -111,7 +111,10 @@ function ENT:SetupPanel()
 	self.Delta = SysTime();
 	self.MediaSrc = "asset://garrysmod/materials/elven_display/icon.png";
 	self.MediaScale = 0.24;
+	self:Sync();
+end
 
+function ENT:Sync()
 	net.Start("elven.display.sync");
 		net.WriteEntity(self);
 	net.SendToServer();

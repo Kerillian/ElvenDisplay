@@ -27,6 +27,7 @@ Elven Display is an addon for [Garry's Mod](https://gmod.facepunch.com/) that al
 |-----------------------------|------|---------|---------------------------------|
 | cl_elvendisplay_show        | bool | 1       | Enable the displays.            |
 | cl_elvendisplay_closeonsave | bool | 1       | Close the editing menu on save. |
+| cl_elvendisplay_sync        | cmd  | nil     | Resync content on all displays. |
 
 
 ### Server / Administrative

@@ -4,8 +4,7 @@ AddCSLuaFile("shared.lua");
 include("shared.lua");
 
 function ENT:Initialize()
-	self:SetModel("models/props_phx/construct/glass/glass_angle360.mdl");
-	self:SetModelScale(0.15);
+	self:SetModel("models/hunter/plates/plate025x025.mdl");
 	self:SetRenderMode(RENDERMODE_TRANSALPHA);
 	self:PhysicsInit(SOLID_VPHYSICS);
 	self:SetMoveType(MOVETYPE_FLY);
