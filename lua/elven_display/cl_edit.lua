@@ -63,11 +63,14 @@ local function RandomMenu(item)
 			table.insert(TagsCache, v:GetValue(1));
 		end
 
+		ApplyButton:SetEnabled(false);
+
 		GetRandomImage(TagsCache, function(url)
 			item:SetValue(url);
 			Root:Remove();
 		end, function(error)
 			Derma_Message(error, "Error", "Ok");
+			ApplyButton:SetEnabled(true);
 		end);
 	end
 
@@ -181,6 +184,10 @@ local function AdminMenu(displays)
 	Root.btnMaxim:SetVisible(false);
 	Root.btnMinim:SetVisible(false);
 
+	function Root:OnRemove()
+		hook.Remove("PreDrawHalos", "elven.display.view");
+	end
+
 	function Root.btnClose:DoClick()
 		Root:SetMouseInputEnabled(false);
 		Root:SetKeyBoardInputEnabled(false);
@@ -199,7 +206,7 @@ local function AdminMenu(displays)
 	DisplayList:Dock(LEFT);
 	DisplayList:SetWide(200);
 	DisplayList:SetMultiSelect(false);
-	DisplayList:AddColumn("Tag");
+	DisplayList:AddColumn("Displays");
 
 	function DisplayList:OnRowSelected(row, panel)
 		url = displays[row][1];
@@ -208,6 +215,15 @@ local function AdminMenu(displays)
 
 		Browser:OpenURL(url);
 		OwnerLabel:SetText(owner:GetName() .. " - " .. owner:SteamID64());
+		LocalPlayer():SetEyeAngles((display:GetPos() - LocalPlayer():GetPos()):Angle());
+
+		hook.Add("PreDrawHalos", "elven.display.view", function()
+			if IsValid(display) then
+				halo.Add({display}, Color(103, 250, 96), 0, 0, 10, true, true);
+			else
+				hook.Remove("PreDrawHalos", "elven.display.view");
+			end
+		end);
 	end
 
 	for k,v in pairs(displays) do
@@ -259,6 +275,7 @@ hook.Add("PopulateToolMenu", "CustomMenuSettings", function()
 		panel:CheckBox("Random Button", "sv_elvendisplay_random");
 		panel:NumberWang("Max Size", "sv_elvendisplay_maxsize", 0, 7680);
 		panel:NumberWang("File Limit (Kilobytes)", "sv_elvendisplay_kblimit", 200, 50000);
+		panel:Button("View Displays", "sv_elvendisplay_view");
 	end);
 end)
 

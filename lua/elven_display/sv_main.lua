@@ -162,7 +162,12 @@ net.Receive("elven.display.view", function(len, ply)
 	local display = net.ReadEntity();
 
 	if display then
-		ply:SetPos(display:GetPos() + Vector(0, 2, 0));
+		if hook.Run("PlayerNoClip", ply, true) then
+			ply:SetMoveType(MOVETYPE_NOCLIP);
+		end
+
+		ply:SetPos(display:GetPos() + (display:GetForward() * 100));
+		ply:SetEyeAngles((display:GetPos() - ply:GetPos()):Angle());
 	end
 end);
 

@@ -111,6 +111,8 @@ function ENT:SetupPanel()
 	self.Delta = SysTime();
 	self.MediaSrc = "asset://garrysmod/materials/elven_display/icon.png";
 	self.MediaScale = 0.24;
+	self.Invisible = false;
+	self.Physics = false;
 	self:Sync();
 end
 
