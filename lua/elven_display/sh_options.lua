@@ -2,6 +2,7 @@ ElvenDisplay = ElvenDisplay or {};
 
 ElvenDisplay.MaxSize = CreateConVar("sv_elvendisplay_maxsize", "1280", {FCVAR_REPLICATED, FCVAR_ARCHIVE}, "Will limit images to this size in pixels. (Checks both width and height).", 0, 7680);
 ElvenDisplay.Random = CreateConVar("sv_elvendisplay_random", "1", {FCVAR_REPLICATED, FCVAR_ARCHIVE}, "Enable the random button inside the edit UI.", 0, 1);
+ElvenDisplay.RandomAdminOnly = CreateConVar("sv_elvendisplay_random_adminonly", "1", {FCVAR_REPLICATED, FCVAR_ARCHIVE}, "Random button will only show for admins.", 0, 1);
 ElvenDisplay.AdminOnly = CreateConVar("sv_elvendisplay_adminonly", "0", FCVAR_ARCHIVE, "Makes it so only admins can edit the panels.", 0, 1);
 ElvenDisplay.FilterIgnoreAdmins = CreateConVar("sv_elvendisplay_filterignoreadmins", "1", FCVAR_ARCHIVE, "Admins can bypass link filters. Mime type checks are still enforced.", 0, 1);
 ElvenDisplay.KbLimit = CreateConVar("sv_elvendisplay_kblimit", "10000", FCVAR_ARCHIVE, "The maximum file size of media in kilobytes.", 200, 50000);

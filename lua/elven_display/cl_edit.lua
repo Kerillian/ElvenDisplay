@@ -152,7 +152,7 @@ local function EditMenu(display)
 		end
 	end
 
-	if ElvenDisplay.Random:GetBool() then
+	if ElvenDisplay.Random:GetBool() and not (ElvenDisplay.RandomAdminOnly:GetBool() and not LocalPlayer():IsAdmin()) then
 		local RandomButton = vgui.Create("DButton", Root);
 		RandomButton:SetText("Random");
 		RandomButton:Dock(BOTTOM);
@@ -273,8 +273,9 @@ hook.Add("PopulateToolMenu", "CustomMenuSettings", function()
 		panel:CheckBox("Admin Only", "sv_elvendisplay_adminonly");
 		panel:CheckBox("Filters ignore admins", "sv_elvendisplay_filterignoreadmins");
 		panel:CheckBox("Random Button", "sv_elvendisplay_random");
-		panel:NumberWang("Max Size", "sv_elvendisplay_maxsize", 0, 7680);
-		panel:NumberWang("File Limit (Kilobytes)", "sv_elvendisplay_kblimit", 200, 50000);
+		panel:CheckBox("Random Button Admin Only", "sv_elvendisplay_random_adminonly");
+		panel:NumberWang("Max Size", "sv_elvendisplay_maxsize", 0, 7680, 1);
+		panel:NumberWang("File Limit (Kilobytes)", "sv_elvendisplay_kblimit", 200, 50000, 1);
 		panel:Button("View Displays", "sv_elvendisplay_view");
 	end);
 end)

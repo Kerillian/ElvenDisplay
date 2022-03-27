@@ -1,8 +1,7 @@
 <p align="center">
-  <img width="256" height="256" src="./materials/elven_display/icon.png">
+  <img width="256" height="256" src="./materials/elven_display/icon.png"></br>
+  Icon Credit: Shmish
 </p>
-
-<p align="center">Icon Credit: Shmish</p>
 
 # 📝About
 Elven Display is an addon for [Garry's Mod](https://gmod.facepunch.com/) that allows you to display images and videos in-game. It was built with the intent of being used on the x64 branch with Chrome, though it does have backwards compatibility with the normal release branch and Awesomium.<br/><br/>
@@ -11,13 +10,13 @@ Elven Display is an addon for [Garry's Mod](https://gmod.facepunch.com/) that al
 
 - Display media like PNGs, JPGs, GIFs, APNGs, and WEBMs (No audio).
 - Scale displayed images (Aspect ratio aware).
-- Display random images from [Gelbooru](https://gelbooru.com) (**NSFW content warning**).
+- Display random images. (Safe rating is default. Admin only by default.)
 - Client can opt out of viewing the displays.
-- Manage the url filters.
-- Manage the allowed mime types.
-- Able to limit the size of images (Both dimension and file size).
-- Able to make displays admin only.
-- Able to allow admins to bypass url filters.
+- Manage url filters.
+- Manage allowed mime types.
+- Limit the size of images (Both dimension and file size).
+- Make displays admin only.
+- Allow admins to bypass url filters.
 - Admin menu to view currently spawned displays.<br/><br/>
 
 # ⌨️Commands
@@ -36,6 +35,7 @@ Elven Display is an addon for [Garry's Mod](https://gmod.facepunch.com/) that al
 | sv_elvendisplay_maxsize            | int32 | 1280    | Will limit images to this size in pixels. (Checks both width and height). |
 | sv_elvendisplay_kblimit            | int32 | 10000   | The maximum file size of media in kilobytes.                              |
 | sv_elvendisplay_random             | bool  | 1       | Enable the random button inside the edit UI.                              |
+| sv_elvendisplay_random_adminonly   | bool  | 1       | Random button will only show for admins.                                  |
 | sv_elvendisplay_adminonly          | bool  | 0       | Makes it so only admins can edit the panels.                              |
 | sv_elvendisplay_filterignoreadmins | bool  | 1       | Admins can bypass link filters. Mime type checks are still enforced.      |
 | sv_elvendisplay_filters            | cmd   | nil     | List the currently used filters.                                          |
