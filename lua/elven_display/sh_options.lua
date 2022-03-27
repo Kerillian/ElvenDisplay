@@ -155,6 +155,7 @@ if SERVER then
 			ElvenDisplay.MaxSize:SetInt(1280);
 			ElvenDisplay.KbLimit:SetInt(10000);
 			ElvenDisplay.Random:SetBool(true);
+			ElvenDisplay.RandomAdminOnly:SetBool(true);
 			ElvenDisplay.AdminOnly:SetBool(false);
 			ElvenDisplay.FilterIgnoreAdmins:SetBool(true);
 

@@ -93,13 +93,13 @@ function ENT:SetupPanel()
 			local maxSize = ElvenDisplay.MaxSize:GetInt();
 
 			if w > maxSize or h > maxSize then
-				local scale = (w > h) and (w / maxSize) or (h / maxSize);
+				local scale = math.max(w, h) / maxSize;
 				w = math.floor(w / scale);
 				h = math.floor(h / scale);
 			end
 
 			ref.Panel:SetSize(w, h);
-			ref.Ratio = (w > h) and (h / w) or (w / h);
+			ref.Ratio = math.min(w, h) / math.max(w, h);
 
 			ref:ScaleRenderBounds();
 		end
