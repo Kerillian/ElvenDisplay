@@ -24,6 +24,11 @@ function ENT:Initialize()
 	end
 end
 
+function ENT:OnDuplicated()
+	self:UpdateVisibility(self.Invisible);
+	self:UpdatePhysics(self.Physics);
+end
+
 function ENT:Use(activator)
 	if not activator:IsPlayer() then
 		return;
@@ -40,6 +45,24 @@ function ENT:Use(activator)
 	net.Start("elven.display.edit");
 		net.WriteEntity(self);
 	net.Send(activator);
+end
+
+function ENT:UpdateVisibility(state)
+	self:DrawShadow(not state);
+end
+
+function ENT:UpdatePhysics(state)
+	if state then
+		self:SetMoveType(MOVETYPE_VPHYSICS);
+		local obj = self:GetPhysicsObject();
+
+		if IsValid(obj) then
+			obj:SetPos(self:GetPos());
+			obj:Wake();
+		end
+	else
+		self:SetMoveType(MOVETYPE_FLY);
+	end
 end
 
 function ENT:Sync(ply)

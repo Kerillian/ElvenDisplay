@@ -1,10 +1,10 @@
 AddCSLuaFile();
 DEFINE_BASECLASS("base_anim");
 
-ENT.Type            = "anim";
-ENT.Base            = "base_gmodentity";
+ENT.Type			= "anim";
+ENT.Base			= "base_gmodentity";
 ENT.PrintName		= "Elven Display";
-ENT.Category        = "Kerillian's Entites"
+ENT.Category		= "Kerillian's Entites"
 ENT.Author			= "Kerillian";
-ENT.Spawnable       = true;
-ENT.AdminOnly       = false;
+ENT.Spawnable		= true;
+ENT.AdminOnly		= false;

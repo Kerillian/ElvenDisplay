@@ -93,17 +93,8 @@ net.Receive("elven.display.edit", function(len, ply)
 		ent.Invisible = invisible;
 		ent.Physics = physics;
 
-		if ent.Invisible then
-			ent:DrawShadow(false);
-		else
-			ent:DrawShadow(true);
-		end
-
-		if ent.Physics then
-			ent:SetMoveType(MOVETYPE_VPHYSICS);
-		else
-			ent:SetMoveType(MOVETYPE_FLY);
-		end
+		ent:UpdateVisibility(ent.Invisible);
+		ent:UpdatePhysics(ent.Physics);
 
 		if url ~= ent.MediaSrc then
 			if not VerifyUrl(url, ply) then
